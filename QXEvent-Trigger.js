@@ -1,21 +1,41 @@
 // Quantumult X WiFi 名称切换节点脚本
+// WiFi 名称与节点名称映射
 const wifiNameToNode = {
     "706wifi_5G": "HK",   // WiFi 名称 -> 节点名称
     "OfficeWiFi": "美国节点",
     "CafeWiFi": "日本节点"
 };
 
-const currentSSID = $network.wifi.ssid; // 获取当前连接的 WiFi 名称
+// 策略组名称
+const strategyGroupName = "JD策略";
 
-if (wifiNameToNode[currentSSID]) {
-    $configuration.sendMessage({
-        action: "set_policy_state",
-        content: { "策略组名称": wifiNameToNode[currentSSID] }  // 根据 WiFi 名称切换节点
-    }).then((resp) => {
-        $done({ title: "节点切换成功", message: `当前 WiFi：${currentSSID}, 已切换到：${wifiNameToNode[currentSSID]}` });
-    }).catch((err) => {
-        $done({ title: "节点切换失败", message: `错误信息：${err}` });
-    });
+// 运行脚本主函数
+const currentWifiName = $network.wifi.ssid;  // 获取当前 WiFi 名称
+const targetNode = wifiNameToNode[currentWifiName];  // 获取目标节点名称
+
+if (targetNode) {
+    (async () => {
+        const groups = $configuration.getPolicyGroups(); // 获取所有策略组
+        const jdGroup = groups.find(group => group.name === strategyGroupName); // 找到指定的策略组
+
+        if (jdGroup) {
+            const availableNodes = jdGroup.items; // 策略组内的所有节点
+            const targetNodeInfo = availableNodes.find(node => node.name === targetNode); // 找到目标节点
+
+            if (targetNodeInfo) {
+                // 切换节点
+                await $configuration.setSelectPolicy(strategyGroupName, targetNodeInfo.name);
+                $notify("WiFi 切换节点", `已切换至 ${currentWifiName} 的节点：${targetNode}`, "策略组已更新");
+            } else {
+                $notify("WiFi 切换节点失败", `未找到节点 ${targetNode} 在策略组 ${strategyGroupName} 中`, "请检查配置");
+            }
+        } else {
+            $notify("WiFi 切换节点失败", `未找到策略组 ${strategyGroupName}`, "请检查配置");
+        }
+    })();
 } else {
-    $done({ title: "WiFi 名称不匹配", message: "未定义的 WiFi，保持原节点" });
+    $notify("WiFi 切换节点", `当前 WiFi：${currentWifiName} 无匹配节点配置`, "保持当前节点");
 }
+
+// 脚本结束
+$done();
