@@ -1,18 +1,28 @@
-// Quantumult X WiFi 名称切换节点脚本
 const wifiNameToNode = {
-    "706wifi_5G": "HK",   // WiFi 名称 -> 节点集合名称
+    "706wifi_5G": "HK",
+    "OfficeWiFi": "美国节点",
+    "CafeWiFi": "日本节点"
 };
 
-const groupName = "JD"; // 策略组名称
+// 获取当前 WiFi 名称
+const currentWifi = $network.wifi.ssid;
+const targetNode = wifiNameToNode[currentWifi];
 
-// 获取当前 Wi-Fi 名称
-const currentWiFiName = $network.wifi.ssid;
-
-// 匹配 Wi-Fi 名称并切换节点
-if (wifiNameToNode[currentWiFiName]) {
-    const nodeName = wifiNameToNode[currentWiFiName];
-    $surge.setSelectGroupPolicy(groupName, nodeName);
-    console.log(`已切换 ${groupName} 策略组到节点集合 ${nodeName}`);
+if (targetNode) {
+    $configuration.sendMessage({
+        action: "set_policy_state",
+        content: {
+            "JD策略": targetNode
+        }
+    }).then(response => {
+        if (response.ret) {
+            console.log(`已切换 JD 策略组到节点：${targetNode}`);
+        } else {
+            console.log("切换节点失败，可能是策略组名称或节点名称不正确");
+        }
+    }).catch(error => {
+        console.error("发送切换策略组消息时出错：", error);
+    });
 } else {
-    console.log(`当前Wi-Fi没有匹配的节点切换规则`);
+    console.log(`当前 WiFi (${currentWifi}) 无对应节点设置`);
 }
