@@ -1,6 +1,6 @@
 // Quantumult X WiFi 名称切换节点脚本
 const wifiNameToNode = {
-    "706wifi_5G": "香港节点",   // WiFi 名称 -> 节点名称
+    "706wifi_5G": "HK",   // WiFi 名称 -> 节点名称
     "OfficeWiFi": "美国节点",
     "CafeWiFi": "日本节点"
 };
