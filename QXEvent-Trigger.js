@@ -4,15 +4,15 @@ const wifiNameToNode = {
     "CafeWiFi": "日本节点"
 };
 
-// 获取当前 WiFi 名称
-const currentWifi = $network.wifi.ssid;
+// 手动指定 WiFi 名称来测试
+const currentWifi = "706wifi_5G";  // 替换为想测试的 WiFi 名称
 const targetNode = wifiNameToNode[currentWifi];
 
 if (targetNode) {
     $configuration.sendMessage({
         action: "set_policy_state",
         content: {
-            "JD策略": targetNode
+            "JD": targetNode
         }
     }).then(response => {
         if (response.ret) {
