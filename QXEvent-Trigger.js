@@ -7,7 +7,7 @@ const wifiNameToNode = {
 };
 
 // 策略组名称
-const strategyGroupName = "JD策略";
+const strategyGroupName = "JD";
 
 // 运行脚本主函数
 const currentWifiName = $network.wifi.ssid;  // 获取当前 WiFi 名称
