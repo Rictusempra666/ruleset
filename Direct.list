@@ -1,8 +1,7 @@
 # 直连补充列表(国内域名不解析时，防止走代理使用)
 
 # IP段匹配
-DOMAIN-SUFFIX,zoom.us,DIRECT
-DOMAIN-SUFFIX,zoom2.us,DIRECT
-SRC-IP-CIDR,192.168.1.12/32,DIRECT #匹配数据发起IP(直连)
-DOMAIN-SUFFIX,cra.myds.me,DIRECT
+DOMAIN-SUFFIX,zoom.us
+SRC-IP-CIDR,192.168.1.12/32
+DOMAIN-SUFFIX,cra.myds.me
 
