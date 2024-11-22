@@ -15,7 +15,7 @@
   },
   "dns": {
     "servers": [
-      {"tag": "proxyDns", "address": "https://8.8.8.8/dns-query", "address_resolver": "localDns", "address_strategy": "ipv4_only", "detour": "🚀 节点选择"},
+      {"tag": "proxyDns", "address": "address": "tls://8.8.8.8", "address_resolver": "localDns", "address_strategy": "ipv4_only", "detour": "🚀 节点选择"},
       {"tag": "localDns", "address": "211.141.16.99", "detour": "🎯 全球直连"},
       {"tag": "block", "address": "rcode://success"}
     ],
