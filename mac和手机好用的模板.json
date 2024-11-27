@@ -12,8 +12,7 @@
       "external_ui_download_detour": "direct",
       "default_mode": "rule",
       "access_control_allow_origin": [
-          "http://127.0.0.1",
-          "http://yacd.haishan.me"
+          "http://127.0.0.1"
         ],
       "access_control_allow_private_network": true
     },
