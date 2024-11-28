@@ -24,39 +24,27 @@ jobs:
           mv sing-box-1.10.3-linux-amd64/sing-box ./sing-box
           chmod +x sing-box
 
-      # Step 3: 转换 JSON 文件
+      # Step 3: 调试文件改动捕获逻辑
+      - name: Debug Changed Files
+        run: |
+          echo "Changed JSON files:"
+          git diff --name-only $(git merge-base HEAD origin/main) HEAD | grep '\.json$'
+
+      # Step 4: 转换 JSON 文件
       - name: Convert JSON Files to SRS
         run: |
-          echo "Debug: Checking changed JSON files"
-          git diff --name-only $(git merge-base HEAD origin/main) HEAD
           for json_file in $(git diff --name-only $(git merge-base HEAD origin/main) HEAD | grep '\.json$'); do
             echo "Converting $json_file..."
             srs_file="${json_file%.json}.srs"
-            if [ -f "$json_file" ]; then
-              ./sing-box run -c "$json_file" || { echo "Failed to process $json_file"; exit 1; }
-              mv rules.srs "$srs_file"
-              echo "Generated $srs_file from $json_file"
-              git add "$srs_file"
-            else
-              echo "File $json_file does not exist. Skipping."
-            fi
+            ./sing-box run -c "$json_file" || { echo "Failed to process $json_file"; exit 1; }
+            mv rules.srs "$srs_file"
+            git add "$srs_file"
           done
-
-      # Step 4: 调试生成的文件
-      - name: Debug Generated Files
-        run: |
-          echo "Checking directory contents:"
-          ls -l
 
       # Step 5: 提交生成的 SRS 文件
       - name: Commit and Push SRS Files
         run: |
           git config --global user.name "Rictusempra666"
           git config --global user.email "tcmickeyzhou@gmail.com"
-          git status
-          if git diff --cached --quiet; then
-            echo "No changes to commit."
-          else
-            git commit -m "Auto-converted SRS files from JSON"
-            git push
-          fi
+          git commit -m "Auto-converted SRS files from JSON" || echo "No changes to commit"
+          git push || echo "Nothing to push"
