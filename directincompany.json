@@ -1,3 +1,19 @@
 {
-  "example": "This is a test JSON for direc444t55324inany"
+  "version": 1,
+  "rules": [
+    {
+      "domain_suffix": [
+        "zoom.us",
+        "cra.myds.me",
+        "klei.com",
+        "kleientertainment.com"
+      ]
+    },
+    {
+      "source_ip_cidr": [
+        "192.168.1.12/32",
+        "192.168.1.13/32"
+      ]
+    }
+  ]
 }
