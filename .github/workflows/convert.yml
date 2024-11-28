@@ -1,0 +1,43 @@
+name: Convert All JSON Files to SRS
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '*.json'  # 检测所有 JSON 文件的变化
+
+jobs:
+  convert-json:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: 检出当前仓库
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      # Step 2: 下载 SingBox 内核
+      - name: Download SingBox
+        run: |
+          curl -L -o sing-box.tar.gz https://github.com/SagerNet/sing-box/releases/download/v1.10.3/sing-box-1.10.3-linux-amd64.tar.gz
+          tar -xzf sing-box.tar.gz
+          chmod +x sing-box
+
+      # Step 3: 遍历并转换所有 JSON 文件
+      - name: Convert JSON Files to SRS
+        run: |
+          for json_file in *.json; do
+            echo "Converting $json_file..."
+            srs_file="${json_file%.json}.srs"
+            ./sing-box run -c "$json_file" || exit 1
+            mv rules.srs "${srs_file}"
+          done
+
+      # Step 4: 提交生成的 SRS 文件
+      - name: Commit and Push SRS Files
+        run: |
+          git config --global user.name "Your GitHub Username"
+          git config --global user.email "your-email@example.com"
+          git add *.srs
+          git commit -m "Auto-converted SRS files from JSON"
+          git push
