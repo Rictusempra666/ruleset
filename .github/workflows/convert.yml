@@ -37,8 +37,8 @@ jobs:
       # Step 4: 提交生成的 SRS 文件
       - name: Commit and Push SRS Files
         run: |
-          git config --global user.name "Your GitHub Username"
-          git config --global user.email "your-email@example.com"
+          git config --global user.name "Rictusempra666"
+          git config --global user.email "tcmickeyzhou@gmail.com"
           git add *.srs
           git commit -m "Auto-converted SRS files from JSON"
           git push
