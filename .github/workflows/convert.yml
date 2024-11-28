@@ -28,12 +28,17 @@ jobs:
       - name: Debug Changed Files
         run: |
           echo "Changed JSON files:"
-          git diff --name-only $(git merge-base HEAD origin/main) HEAD | grep '\.json$'
-
+          git diff --name-only $(git merge-base HEAD origin/main) HEAD | grep '\.json$' || echo "No JSON files changed"
+      
       # Step 4: 转换 JSON 文件
       - name: Convert JSON Files to SRS
         run: |
-          for json_file in $(git diff --name-only $(git merge-base HEAD origin/main) HEAD | grep '\.json$'); do
+          json_files=$(git diff --name-only $(git merge-base HEAD origin/main) HEAD | grep '\.json$' || echo "")
+          if [ -z "$json_files" ]; then
+            echo "No JSON files to convert."
+            exit 0
+          fi
+          for json_file in $json_files; do
             echo "Converting $json_file..."
             srs_file="${json_file%.json}.srs"
             ./sing-box run -c "$json_file" || { echo "Failed to process $json_file"; exit 1; }
