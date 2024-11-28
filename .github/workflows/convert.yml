@@ -27,8 +27,10 @@ jobs:
       # Step 3: 转换 JSON 文件
       - name: Convert JSON Files to SRS
         run: |
+          echo "Debug: Checking changed JSON files"
+          git diff --name-only $(git merge-base HEAD origin/main) HEAD
           for json_file in $(git diff --name-only $(git merge-base HEAD origin/main) HEAD | grep '\.json$'); do
-            echo "Processing $json_file..."
+            echo "Converting $json_file..."
             srs_file="${json_file%.json}.srs"
             if [ -f "$json_file" ]; then
               ./sing-box run -c "$json_file" || { echo "Failed to process $json_file"; exit 1; }
@@ -40,11 +42,18 @@ jobs:
             fi
           done
 
-      # Step 4: 提交生成的 SRS 文件
+      # Step 4: 调试生成的文件
+      - name: Debug Generated Files
+        run: |
+          echo "Checking directory contents:"
+          ls -l
+
+      # Step 5: 提交生成的 SRS 文件
       - name: Commit and Push SRS Files
         run: |
           git config --global user.name "Rictusempra666"
           git config --global user.email "tcmickeyzhou@gmail.com"
+          git status
           if git diff --cached --quiet; then
             echo "No changes to commit."
           else
