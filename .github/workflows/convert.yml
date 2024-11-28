@@ -24,13 +24,18 @@ jobs:
           mv sing-box-1.10.3-linux-amd64/sing-box ./sing-box
           chmod +x sing-box
 
-      # Step 3: 转换 JSON 文件
+      # Step 3: 转换变更的 JSON 文件
       - name: Convert JSON Files to SRS
         run: |
-          for json_file in $(git diff --name-only HEAD^ HEAD | grep '\.json$'); do
+          # 获取所有发生变更的 JSON 文件
+          for json_file in $(git diff --name-only HEAD~1 HEAD | grep '\.json$'); do
             echo "Converting $json_file..."
             srs_file="${json_file%.json}.srs"
+            
+            # 使用 SingBox 转换
             ./sing-box run -c "$json_file" || { echo "Failed to process $json_file"; exit 1; }
+            
+            # 重命名并添加到 Git 暂存区
             mv rules.srs "$srs_file"
             git add "$srs_file"
           done
@@ -40,5 +45,11 @@ jobs:
         run: |
           git config --global user.name "Rictusempra666"
           git config --global user.email "tcmickeyzhou@gmail.com"
-          git commit -m "Auto-converted SRS files from JSON"
-          git push
+          
+          # 如果有变更的文件，则提交
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Auto-converted SRS files from JSON"
+            git push
+          fi
