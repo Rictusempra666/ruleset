@@ -145,7 +145,7 @@
       { "rule_set": "geosite-cn", "outbound": "China" }
     ],
     "rule_set": [
-      { "tag": "myrule-direct", "type": "remote", "format": "binary", "url": "https://mirror.ghproxy.com/https://raw.githubusercontent.com/Rictusempra666/ruleset/refs/heads/main/direct.srs", "download_detour": "direct" },
+      { "tag": "myrule-direct", "type": "remote", "format": "binary", "url": "https://mirror.ghproxy.com/https://raw.githubusercontent.com/Rictusempra666/singbox-conversion/refs/heads/main/myRule/direct.srs", "download_detour": "direct" },
       { "tag": "geoip-google", "type": "remote", "format": "binary", "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/google.srs", "download_detour": "direct" },
       { "tag": "geoip-telegram", "type": "remote", "format": "binary", "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/telegram.srs", "download_detour": "direct" },
       { "tag": "geoip-twitter", "type": "remote", "format": "binary", "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/twitter.srs", "download_detour": "direct" },
