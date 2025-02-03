@@ -100,7 +100,7 @@
     "auto_detect_interface": true,
     "final": "proxy",
     "rules": [
-      {"action": "sniff"},
+      { "action": "sniff"},
       { "protocol": "dns", "action": "hijack-dns"},
       { "port": 53, "action": "hijack-dns"},
       { "network": "udp", "port": 443, "action": "reject"},
