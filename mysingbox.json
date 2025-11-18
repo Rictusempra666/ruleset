@@ -25,6 +25,7 @@
     ],
     "rules": [
       { "domain": [ "ghproxy.com", "cdn.jsdelivr.net", "testingcf.jsdelivr.net" ], "server": "localDns" },
+      { "outbound": "direct", "server": "localDns", "disable_cache": true }
       { "rule_set": "geosite-cn", "server": "localDns" },
       { "clash_mode": "direct", "server": "localDns" },
       { "clash_mode": "global", "server": "proxyDns" },
