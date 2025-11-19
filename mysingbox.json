@@ -74,7 +74,7 @@
       "users": []
     }
   ],
-  "outbounds": [
+"outbounds": [
 
   { "tag": "proxy", "type": "selector", "outbounds": [ "auto", "auto-HK", "auto-TW", "auto-SG", "auto-JP", "auto-US", "direct", "{all}" ] },
 
@@ -86,7 +86,14 @@
   { "tag": "Facebook", "type": "selector", "outbounds": [ "auto","HK","TW","SG","JP","US","Others" ], "default": "auto" },
   { "tag": "BiliBili", "type": "selector", "outbounds": [ "auto", "direct", "HK", "TW" ], "default": "direct" },
   { "tag": "Bahamut", "type": "selector", "outbounds": [ "auto","HK","TW","SG","JP","US","Others" ], "default": "TW" },
+  { "tag": "Spotify", "type": "selector", "outbounds": [ "auto","HK","TW","SG","JP","US","Others" ], "default": "auto" },
   { "tag": "TikTok", "type": "selector", "outbounds": [ "auto","HK","TW","SG","JP","US" ], "default": "SG" },
+  { "tag": "NETFLIX", "type": "selector", "outbounds": [ "auto","HK","TW","SG","JP","US","Others" ] },
+  { "tag": "Disney+", "type": "selector", "outbounds": [ "auto","HK","TW","SG","JP","US","Others" ] },
+  { "tag": "Apple", "type": "selector", "outbounds": [ "auto","direct", "HK","TW","SG","JP","US","Others" ], "default": "direct"  },
+  { "tag": "Microsoft", "type": "selector", "outbounds": [ "auto","direct", "HK","TW","SG","JP","US","Others" ] },
+  { "tag": "Games", "type": "selector", "outbounds": [ "auto","direct", "HK","TW","SG","JP","US","Others" ] },
+  { "tag": "Streaming", "type": "selector", "outbounds": [ "auto","HK","TW","SG","JP","US","Others" ] },
 
 
   { "tag": "HK", "type": "selector", "outbounds": [ "{all}" ], "filter": [{ "action": "include", "keywords": ["🇭🇰|HK|香港"] }] },
@@ -95,7 +102,7 @@
   { "tag": "JP", "type": "selector", "outbounds": [ "{all}" ], "filter": [{ "action": "include", "keywords": ["🇯🇵|JP|日本"] }] },
   { "tag": "US", "type": "selector", "outbounds": [ "{all}" ], "filter": [{ "action": "include", "keywords": ["🇺🇸|US|美国"] }] },
   { "tag": "Others", "type": "selector", "outbounds": [ "{all}" ], "filter": [
-      { "action": "exclude", "keywords": [ "🇭🇰|HK|香港", "🇹🇼|TW|台湾|台", "🇸🇬|SG|新加坡", "🇯🇵|JP|日本", "🇺🇸|US|美国" ] }
+      { "action": "exclude", "keywords": [ "🇭🇰|HK|香港", "🇹🇼|TW|台湾|台", "🇸🇬|SG|新加坡", "🇯🇵|JP|日本", "🇺🇸|US|美国","网站|地址|剩余|过期|时间|有效|最新|网址"] }
   ]},
 
 
@@ -174,11 +181,11 @@
       { "rule_set": "geosite-category-games", "outbound": "Games" },
       { "rule_set": "geosite-hbo", "outbound": "Streaming" },
       { "rule_set": "geosite-primevideo", "outbound": "Streaming" },
-      { "rule_set": "geosite-geolocation-!cn", "outbound": "Global" },
+      { "rule_set": "geosite-geolocation-!cn", "outbound": "proxy" },
       { "rule_set": "geosite-private", "outbound": "direct" },
       { "ip_is_private": true, "outbound": "direct" },
-      { "rule_set": "geoip-cn", "outbound": "China" },
-      { "rule_set": "geosite-cn", "outbound": "China" }
+      { "rule_set": "geoip-cn", "outbound": "direct" },
+      { "rule_set": "geosite-cn", "outbound": "direct" }
     ],
     "rule_set": [
       { "tag": "myrule-direct", "type": "remote", "format": "binary", "url": "https://testingcf.jsdelivr.net/gh/Rictusempra666/singbox-conversion@main/myRule/direct.srs", "download_detour": "direct" },
