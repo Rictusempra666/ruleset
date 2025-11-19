@@ -79,7 +79,7 @@
   { "tag": "proxy", "type": "selector", "outbounds": [ "auto", "auto-HK", "auto-TW", "auto-SG", "auto-JP", "auto-US", "direct", "{all}" ] },
 
 
-  { "tag": "OpenAI", "type": "selector", "outbounds": [ "auto","TW","SG","JP","US","Others" ], "default": "SG" },
+  { "tag": "OpenAI", "type": "selector", "outbounds": [ "auto","auto-HK","auto-TW","auto-SG","auto-JP","auto-US","TW","SG","JP","US","Others" ], "default": "auto" },
   { "tag": "Google", "type": "selector", "outbounds": [ "auto", "HK", "TW", "SG", "JP", "US", "Others" ], "default": "auto" },
   { "tag": "Telegram", "type": "selector", "outbounds": [ "auto","HK","TW","SG","JP","US","Others" ], "default": "auto" },
   { "tag": "Twitter", "type": "selector", "outbounds": [ "auto","HK","TW","SG","JP","US","Others" ], "default": "auto" },
