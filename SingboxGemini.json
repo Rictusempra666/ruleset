@@ -12,7 +12,7 @@
       "default_mode": "rule"
     }
   },
-"dns": {
+  "dns": {
     "servers": [
       {
         "tag": "google",
@@ -57,38 +57,48 @@
     }
   ],
   "outbounds": [
-    { "tag": "proxy", "type": "selector", "outbounds": [ "auto", "auto-HK", "auto-TW", "auto-SG", "auto-JP", "auto-US", "direct", "{all}" ] },
-    { "tag": "OpenAI", "type": "selector", "outbounds": [ "auto","auto-HK","auto-TW","auto-SG","auto-JP","auto-US","TW","SG","JP","US","Others" ], "default": "auto" },
-    { "tag": "Google", "type": "selector", "outbounds": [ "auto", "HK", "TW", "SG", "JP", "US", "Others" ], "default": "auto" },
-    { "tag": "Telegram", "type": "selector", "outbounds": [ "auto","HK","TW","SG","JP","US","Others" ], "default": "auto" },
-    { "tag": "Twitter", "type": "selector", "outbounds": [ "auto","HK","TW","SG","JP","US","Others" ], "default": "auto" },
-    { "tag": "Facebook", "type": "selector", "outbounds": [ "auto","HK","TW","SG","JP","US","Others" ], "default": "auto" },
-    { "tag": "BiliBili", "type": "selector", "outbounds": [ "auto", "direct", "HK", "TW" ], "default": "direct" },
-    { "tag": "Bahamut", "type": "selector", "outbounds": [ "auto","HK","TW","SG","JP","US","Others" ], "default": "TW" },
-    { "tag": "Spotify", "type": "selector", "outbounds": [ "auto","HK","TW","SG","JP","US","Others" ], "default": "auto" },
-    { "tag": "TikTok", "type": "selector", "outbounds": [ "auto","HK","TW","SG","JP","US" ], "default": "SG" },
-    { "tag": "NETFLIX", "type": "selector", "outbounds": [ "auto","HK","TW","SG","JP","US","Others" ] },
-    { "tag": "Disney+", "type": "selector", "outbounds": [ "auto","HK","TW","SG","JP","US","Others" ] },
-    { "tag": "Apple", "type": "selector", "outbounds": [ "auto","direct", "HK","TW","SG","JP","US","Others" ], "default": "direct"  },
-    { "tag": "Microsoft", "type": "selector", "outbounds": [ "auto","direct", "HK","TW","SG","JP","US","Others" ] },
-    { "tag": "Games", "type": "selector", "outbounds": [ "auto","direct", "HK","TW","SG","JP","US","Others" ] },
-    { "tag": "Streaming", "type": "selector", "outbounds": [ "auto","HK","TW","SG","JP","US","Others" ] },
 
-    { "tag": "HK", "type": "selector", "outbounds": [ "{all}" ], "filter": [{ "action": "include", "keywords": ["🇭🇰|HK|香港"] }] },
-    { "tag": "TW", "type": "selector", "outbounds": [ "{all}" ], "filter": [{ "action": "include", "keywords": ["🇹🇼|TW|台湾|台"] }] },
-    { "tag": "SG", "type": "selector", "outbounds": [ "{all}" ], "filter": [{ "action": "include", "keywords": ["🇸🇬|SG|新加坡"] }] },
-    { "tag": "JP", "type": "selector", "outbounds": [ "{all}" ], "filter": [{ "action": "include", "keywords": ["🇯🇵|JP|日本"] }] },
-    { "tag": "US", "type": "selector", "outbounds": [ "{all}" ], "filter": [{ "action": "include", "keywords": ["🇺🇸|US|美国"] }] },
-    { "tag": "Others", "type": "selector", "outbounds": [ "{all}" ], "filter": [
-        { "action": "exclude", "keywords": [ "🇭🇰|HK|香港", "🇹🇼|TW|台湾|台", "🇸🇬|SG|新加坡", "🇯🇵|JP|日本", "🇺🇸|US|美国","网站|地址|剩余|过期|时间|有效|最新|网址"] }
+    {
+      "tag": "proxy",
+      "type": "selector",
+      "outbounds": ["auto", "auto-HK", "auto-TW", "auto-SG", "auto-JP", "auto-US", "direct"],
+      "include_all_proxies": true
+    },
+
+    { "tag": "OpenAI", "type": "selector", "outbounds": ["auto", "auto-HK", "auto-TW", "auto-SG", "auto-JP", "auto-US", "TW", "SG", "JP", "US", "Others"], "default": "auto" },
+    { "tag": "Google", "type": "selector", "outbounds": ["auto", "HK", "TW", "SG", "JP", "US", "Others"], "default": "auto" },
+    { "tag": "Telegram", "type": "selector", "outbounds": ["auto", "HK", "TW", "SG", "JP", "US", "Others"], "default": "auto" },
+    { "tag": "Twitter", "type": "selector", "outbounds": ["auto", "HK", "TW", "SG", "JP", "US", "Others"], "default": "auto" },
+    { "tag": "Facebook", "type": "selector", "outbounds": ["auto", "HK", "TW", "SG", "JP", "US", "Others"], "default": "auto" },
+    { "tag": "BiliBili", "type": "selector", "outbounds": ["auto", "direct", "HK", "TW"], "default": "direct" },
+    { "tag": "Bahamut", "type": "selector", "outbounds": ["auto", "HK", "TW", "SG", "JP", "US", "Others"], "default": "TW" },
+    { "tag": "Spotify", "type": "selector", "outbounds": ["auto", "HK", "TW", "SG", "JP", "US", "Others"], "default": "auto" },
+    { "tag": "TikTok", "type": "selector", "outbounds": ["auto", "HK", "TW", "SG", "JP", "US"], "default": "SG" },
+    { "tag": "NETFLIX", "type": "selector", "outbounds": ["auto", "HK", "TW", "SG", "JP", "US", "Others"] },
+    { "tag": "Disney+", "type": "selector", "outbounds": ["auto", "HK", "TW", "SG", "JP", "US", "Others"] },
+    { "tag": "Apple", "type": "selector", "outbounds": ["auto", "direct", "HK", "TW", "SG", "JP", "US", "Others"], "default": "direct" },
+    { "tag": "Microsoft", "type": "selector", "outbounds": ["auto", "direct", "HK", "TW", "SG", "JP", "US", "Others"] },
+    { "tag": "Games", "type": "selector", "outbounds": ["auto", "direct", "HK", "TW", "SG", "JP", "US", "Others"] },
+    { "tag": "Streaming", "type": "selector", "outbounds": ["auto", "HK", "TW", "SG", "JP", "US", "Others"] },
+
+
+    { "tag": "HK", "type": "selector", "include_all_proxies": true, "filter": [{ "action": "include", "keywords": ["🇭🇰|HK|香港"] }] },
+    { "tag": "TW", "type": "selector", "include_all_proxies": true, "filter": [{ "action": "include", "keywords": ["🇹🇼|TW|台湾|台"] }] },
+    { "tag": "SG", "type": "selector", "include_all_proxies": true, "filter": [{ "action": "include", "keywords": ["🇸🇬|SG|新加坡"] }] },
+    { "tag": "JP", "type": "selector", "include_all_proxies": true, "filter": [{ "action": "include", "keywords": ["🇯🇵|JP|日本"] }] },
+    { "tag": "US", "type": "selector", "include_all_proxies": true, "filter": [{ "action": "include", "keywords": ["🇺🇸|US|美国"] }] },
+    { "tag": "Others", "type": "selector", "include_all_proxies": true, "filter": [
+        { "action": "exclude", "keywords": ["🇭🇰|HK|香港", "🇹🇼|TW|台湾|台", "🇸🇬|SG|新加坡", "🇯🇵|JP|日本", "🇺🇸|US|美国", "网站|地址|剩余|过期|时间|有效|最新|网址"] }
     ]},
 
-    { "tag": "auto-HK", "type": "urltest", "outbounds": ["{all}"], "filter": [{ "action": "include", "keywords": ["🇭🇰|HK|香港"] }], "url": "https://www.gstatic.com/generate_204", "interval": "10m" },
-    { "tag": "auto-TW", "type": "urltest", "outbounds": ["{all}"], "filter": [{ "action": "include", "keywords": ["🇹🇼|TW|台湾|台"] }], "url": "https://www.gstatic.com/generate_204", "interval": "10m" },
-    { "tag": "auto-SG", "type": "urltest", "outbounds": ["{all}"], "filter": [{ "action": "include", "keywords": ["🇸🇬|SG|新加坡"] }], "url": "https://www.gstatic.com/generate_204", "interval": "10m" },
-    { "tag": "auto-JP", "type": "urltest", "outbounds": ["{all}"], "filter": [{ "action": "include", "keywords": ["🇯🇵|JP|日本"] }], "url": "https://www.gstatic.com/generate_204", "interval": "10m" },
-    { "tag": "auto-US", "type": "urltest", "outbounds": ["{all}"], "filter": [{ "action": "include", "keywords": ["🇺🇸|US|美国"] }], "url": "https://www.gstatic.com/generate_204", "interval": "10m" },
-    { "tag": "auto", "type": "urltest", "outbounds": [ "auto-SG", "auto-JP", "auto-HK", "auto-US", "auto-TW" ], "url": "https://www.gstatic.com/generate_204", "interval": "1m" },
+
+    { "tag": "auto-HK", "type": "urltest", "include_all_proxies": true, "filter": [{ "action": "include", "keywords": ["🇭🇰|HK|香港"] }], "url": "https://www.gstatic.com/generate_204", "interval": "10m" },
+    { "tag": "auto-TW", "type": "urltest", "include_all_proxies": true, "filter": [{ "action": "include", "keywords": ["🇹🇼|TW|台湾|台"] }], "url": "https://www.gstatic.com/generate_204", "interval": "10m" },
+    { "tag": "auto-SG", "type": "urltest", "include_all_proxies": true, "filter": [{ "action": "include", "keywords": ["🇸🇬|SG|新加坡"] }], "url": "https://www.gstatic.com/generate_204", "interval": "10m" },
+    { "tag": "auto-JP", "type": "urltest", "include_all_proxies": true, "filter": [{ "action": "include", "keywords": ["🇯🇵|JP|日本"] }], "url": "https://www.gstatic.com/generate_204", "interval": "10m" },
+    { "tag": "auto-US", "type": "urltest", "include_all_proxies": true, "filter": [{ "action": "include", "keywords": ["🇺🇸|US|美国"] }], "url": "https://www.gstatic.com/generate_204", "interval": "10m" },
+    
+    { "tag": "auto", "type": "urltest", "outbounds": ["auto-SG", "auto-JP", "auto-HK", "auto-US", "auto-TW"], "url": "https://www.gstatic.com/generate_204", "interval": "1m" },
 
     { "type": "direct", "tag": "direct" },
     { "type": "dns", "tag": "dns-out" }
