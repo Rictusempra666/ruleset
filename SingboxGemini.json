@@ -82,7 +82,6 @@
     "rules": [
       { "action": "sniff" },
       { "protocol": "dns", "action": "hijack-dns" },
-      { "network": "udp", "port": 443, "action": "reject" },
       { "clash_mode": "global", "outbound": "proxy" },
       { "clash_mode": "direct", "outbound": "direct" },
       { "ip_is_private": true, "outbound": "direct" },
