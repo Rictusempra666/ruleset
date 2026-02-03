@@ -36,10 +36,9 @@
       "type": "tun",
       "address": ["172.19.0.1/30", "fdfe:dcba:9876::1/126"],
       "auto_route": true,
-      "strict_route": false,
+      "strict_route": true,
       "stack": "system",
-      "mtu": 1400,
-      "udp_check_privilege": true
+      "mtu": 1400
     }
   ],
   "outbounds": [
@@ -82,7 +81,6 @@
 "route": {
     "rules": [
       { "action": "sniff" },
-      { "geosite": "discord", "outbound": "proxy", "network": "udp" },
       { "protocol": "dns", "action": "hijack-dns" },
       { "network": "udp", "port": 443, "action": "reject" },
       { "clash_mode": "global", "outbound": "proxy" },
