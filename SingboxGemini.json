@@ -39,8 +39,7 @@
       "strict_route": false,
       "stack": "system",
       "mtu": 1400,
-      "udp_timeout": 300,
-      "sniff": true
+      "udp_check_privilege": true
     }
   ],
   "outbounds": [
