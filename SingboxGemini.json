@@ -74,8 +74,6 @@
     { "tag": "auto-SG", "type": "urltest", "outbounds": ["{all}"], "filter": [{ "action": "include", "keywords": ["🇸🇬|SG|新加坡"] }], "url": "https://www.gstatic.com/generate_204", "interval": "10m" },
     { "tag": "auto-JP", "type": "urltest", "outbounds": ["{all}"], "filter": [{ "action": "include", "keywords": ["🇯🇵|JP|日本"] }], "url": "https://www.gstatic.com/generate_204", "interval": "10m" },
     { "tag": "auto-US", "type": "urltest", "outbounds": ["{all}"], "filter": [{ "action": "include", "keywords": ["🇺🇸|US|美国"] }], "url": "https://www.gstatic.com/generate_204", "interval": "10m" },
-    { "tag": "auto", "type": "urltest", "outbounds": [ "auto-SG", "auto-JP", "auto-HK", "auto-US", "auto-TW" ], "url": "https://www.gstatic.com/generate_204", "interval": "1m" },
-
     { "type": "direct", "tag": "direct" }
   ],
 "route": {
