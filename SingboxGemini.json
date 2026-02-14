@@ -42,9 +42,9 @@
     }
   ],
   "outbounds": [
-    { "tag": "proxy", "type": "selector", "outbounds": [ "auto", "auto-HK", "auto-TW", "auto-SG", "auto-JP", "auto-US", "direct", "{all}" ] },
-    { "tag": "OpenAI", "type": "selector", "outbounds": [ "auto","auto-HK","auto-TW","auto-SG","auto-JP","auto-US","TW","SG","JP","US","Others" ], "default": "auto-SG" },
-    { "tag": "Gemini", "type": "selector", "outbounds": [ "auto","auto-HK","auto-TW","auto-SG","auto-JP","auto-US","TW","SG","JP","US","Others" ], "default": "auto-SG" },
+    { "tag": "proxy", "type": "selector", "outbounds": [ "auto", "auto-TW", "auto-SG", "auto-JP", "auto-US", "direct", "{all}" ] },
+    { "tag": "OpenAI", "type": "selector", "outbounds": [ "auto","auto-TW","auto-SG","auto-JP","auto-US","TW","SG","JP","US","Others" ], "default": "auto-SG" },
+    { "tag": "Gemini", "type": "selector", "outbounds": [ "auto","auto-TW","auto-SG","auto-JP","auto-US","TW","SG","JP","US","Others" ], "default": "auto-SG" },
     { "tag": "Google", "type": "selector", "outbounds": [ "auto", "HK", "TW", "SG", "JP", "US", "Others" ], "default": "auto" },
     { "tag": "Telegram", "type": "selector", "outbounds": [ "auto","HK","TW","SG","JP","US","Others" ], "default": "auto" },
     { "tag": "Twitter", "type": "selector", "outbounds": [ "auto","HK","TW","SG","JP","US","Others" ], "default": "auto" },
@@ -69,7 +69,7 @@
         { "action": "exclude", "keywords": [ "🇭🇰|HK|香港", "🇹🇼|TW|台湾|台", "🇸🇬|SG|新加坡", "🇯🇵|JP|日本", "🇺🇸|US|美国","网站|地址|剩余|过期|时间|有效|最新|网址"] }
     ]},
 
-    { "tag": "auto-HK", "type": "urltest", "outbounds": ["{all}"], "filter": [{ "action": "include", "keywords": ["🇭🇰|HK|香港"] }], "url": "https://www.gstatic.com/generate_204", "interval": "10m" },
+    { "tag": "auto", "type": "urltest", "outbounds": ["{all}"], "filter": [{ "action": "include", "keywords": ["🇭🇰|HK|香港"] }], "url": "https://www.gstatic.com/generate_204", "interval": "10m" },
     { "tag": "auto-TW", "type": "urltest", "outbounds": ["{all}"], "filter": [{ "action": "include", "keywords": ["🇹🇼|TW|台湾|台"] }], "url": "https://www.gstatic.com/generate_204", "interval": "10m" },
     { "tag": "auto-SG", "type": "urltest", "outbounds": ["{all}"], "filter": [{ "action": "include", "keywords": ["🇸🇬|SG|新加坡"] }], "url": "https://www.gstatic.com/generate_204", "interval": "10m" },
     { "tag": "auto-JP", "type": "urltest", "outbounds": ["{all}"], "filter": [{ "action": "include", "keywords": ["🇯🇵|JP|日本"] }], "url": "https://www.gstatic.com/generate_204", "interval": "10m" },
